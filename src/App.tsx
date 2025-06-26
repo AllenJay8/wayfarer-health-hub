@@ -1,9 +1,15 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+
+// Import all pages
+import BookAppointmentPage from './pages/BookAppointment';
+import DonorsPage from './pages/DonorsPage';
+import RefundRequestPage from './pages/RefundRequestPage';
+import SignUpPage from './pages/SignUpPage';
+import LoginPage from './pages/LoginPage';
 
 // Demo pages with complete content
 const HomePage = () => (
@@ -416,6 +422,11 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/book-appointment" element={<BookAppointmentPage />} />
+            <Route path="/donors" element={<DonorsPage />} />
+            <Route path="/refund" element={<RefundRequestPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         <Footer />

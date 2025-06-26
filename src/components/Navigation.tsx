@@ -7,12 +7,12 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'HOME', href: '/', isActive: true },
-    { name: 'ABOUT', href: '/about' },
-    { name: 'HEALTH SERVICES', href: '/services' },
-    { name: 'CONTACT US', href: '/contact' },
-    { name: 'DONORS', href: '/donors' },
-    { name: 'REFUND REQUEST', href: '/refund' },
+    { name: 'HOME', href: '/', isActive: window.location.pathname === '/' },
+    { name: 'ABOUT', href: '/about', isActive: window.location.pathname === '/about' },
+    { name: 'HEALTH SERVICES', href: '/services', isActive: window.location.pathname === '/services' },
+    { name: 'CONTACT US', href: '/contact', isActive: window.location.pathname === '/contact' },
+    { name: 'DONORS', href: '/donors', isActive: window.location.pathname === '/donors' },
+    { name: 'REFUND REQUEST', href: '/refund', isActive: window.location.pathname === '/refund' },
   ];
 
   const authButtons = [
@@ -33,14 +33,13 @@ const Navigation = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <Button 
-                variant="ghost" 
-                size="sm"
-                className="text-green-700 hover:text-green-900 hover:bg-green-100"
+              <a 
+                href="/book-appointment"
+                className="flex items-center space-x-2 text-green-700 hover:text-green-900 hover:bg-green-100 px-3 py-1 rounded-md transition-colors"
               >
-                <Calendar className="h-4 w-4 mr-2" />
-                BOOK AN APPOINTMENT
-              </Button>
+                <Calendar className="h-4 w-4" />
+                <span>BOOK AN APPOINTMENT</span>
+              </a>
             </div>
           </div>
         </div>
@@ -80,18 +79,17 @@ const Navigation = () => {
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
             {authButtons.map((button) => (
-              <Button
+              <a
                 key={button.name}
-                variant={button.variant}
-                size="sm"
-                className={
+                href={button.href}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   button.variant === 'default'
                     ? 'bg-green-600 hover:bg-green-700 text-white'
-                    : 'border-green-600 text-green-600 hover:bg-green-50'
-                }
+                    : 'border border-green-600 text-green-600 hover:bg-green-50'
+                }`}
               >
                 {button.name}
-              </Button>
+              </a>
             ))}
           </div>
 
@@ -129,28 +127,30 @@ const Navigation = () => {
             ))}
             
             {/* Mobile Book Appointment */}
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-green-600 hover:bg-green-50 mt-4"
+            <a 
+              href="/book-appointment"
+              className="flex items-center space-x-2 w-full justify-start text-green-600 hover:bg-green-50 px-4 py-3 rounded-md transition-colors mt-4"
+              onClick={() => setIsMenuOpen(false)}
             >
-              <Calendar className="h-4 w-4 mr-2" />
-              BOOK AN APPOINTMENT
-            </Button>
+              <Calendar className="h-4 w-4" />
+              <span>BOOK AN APPOINTMENT</span>
+            </a>
             
             {/* Mobile Auth Buttons */}
             <div className="pt-4 border-t border-gray-100 space-y-2">
               {authButtons.map((button) => (
-                <Button
+                <a
                   key={button.name}
-                  variant={button.variant}
-                  className={`w-full ${
+                  href={button.href}
+                  className={`block w-full text-center py-3 px-4 rounded-md text-sm font-medium transition-colors ${
                     button.variant === 'default'
                       ? 'bg-green-600 hover:bg-green-700 text-white'
-                      : 'border-green-600 text-green-600 hover:bg-green-50'
+                      : 'border border-green-600 text-green-600 hover:bg-green-50'
                   }`}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {button.name}
-                </Button>
+                </a>
               ))}
             </div>
           </div>
