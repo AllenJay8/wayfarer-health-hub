@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import DashboardLayout from './components/DashboardLayout';
 
 // Import all pages
 import BookAppointmentPage from './pages/BookAppointment';
@@ -11,7 +12,14 @@ import RefundRequestPage from './pages/RefundRequestPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 
-// Demo pages with complete content
+// Import dashboard pages
+import DashboardPage from './pages/DashboardPage';
+import EditProfilePage from './pages/EditProfilePage';
+import AccountSettingsPage from './pages/AccountSettingsPage';
+import AppointmentHistoryPage from './pages/AppointmentHistoryPage';
+import DonationRecordsPage from './pages/DonationRecordsPage';
+import RefundRequestsPage from './pages/RefundRequestsPage';
+
 const HomePage = () => (
   <div className="min-h-screen bg-gray-50">
     {/* Hero Section */}
@@ -427,6 +435,16 @@ function App() {
             <Route path="/refund" element={<RefundRequestPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
+            
+            {/* Dashboard Routes */}
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<DashboardPage />} />
+              <Route path="profile" element={<EditProfilePage />} />
+              <Route path="settings" element={<AccountSettingsPage />} />
+              <Route path="appointments" element={<AppointmentHistoryPage />} />
+              <Route path="donations" element={<DonationRecordsPage />} />
+              <Route path="refunds" element={<RefundRequestsPage />} />
+            </Route>
           </Routes>
         </main>
         <Footer />
